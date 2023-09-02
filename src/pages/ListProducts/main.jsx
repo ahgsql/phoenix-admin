@@ -1,14 +1,32 @@
 import React, { useEffect, useState } from "react";
 import getProducts from "../../hooks/getProducts";
 import { Content } from "antd/es/layout/layout";
-import { Table } from "antd";
+import { Button, Table } from "antd";
+import { useNavigate } from "react-router-dom";
+import deleteProduct from "../../hooks/deleteProduct";
 
 export default function ListProducts() {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     (async () => {
       let data = await getProducts();
-      setProducts(data);
+      let dataSource = data.map((p) => {
+        return {
+          ...p,
+          productActions: [
+            <Button
+              type="primary"
+              onClick={() => navigate("/products/edit/" + p._id)}
+            >
+              Edit
+            </Button>,
+            " ",
+            <Button onClick={() => deleteProduct(p._id)}>Delete</Button>,
+          ],
+        };
+      });
+      setProducts(dataSource);
     })();
   }, []);
 
@@ -28,6 +46,11 @@ export default function ListProducts() {
       dataIndex: "productSlug",
       key: "productSlug",
     },
+    {
+      title: "Actions",
+      dataIndex: "productActions",
+      key: "productActions",
+    },
   ];
 
   if (products.length == 0) {
@@ -36,7 +59,7 @@ export default function ListProducts() {
 
   return (
     <Content style={{ padding: "0 24px", minHeight: 280 }}>
-      <Table dataSource={products} rowKey={"_id"} columns={columns} />;
+      <Table dataSource={products} rowKey={"_id"} columns={columns} />
     </Content>
   );
 }
