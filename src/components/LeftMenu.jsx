@@ -27,6 +27,7 @@ export default function LeftMenu() {
     { key: "3", label: <Link to="/orders">Orders</Link> },
     { key: "4", label: <Link to="/customers">Customers</Link> },
     { key: "5", label: <Link to="/comments">Comments</Link> },
+    { key: "6", label: <Link to="/chat">LiveChat</Link> },
   ];
 
   const leftMenu = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
