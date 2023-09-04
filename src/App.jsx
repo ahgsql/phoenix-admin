@@ -13,7 +13,7 @@ import EditProduct from "./pages/EditProduct/main";
 import Orders from "./pages/Orders/main";
 import Comments from "./pages/Comments/main";
 import Customers from "./pages/Customers/main";
-import LiveChat from "./components/LiveChat";
+import LiveChat from "./pages/LiveChat/main";
 import LeftMenu from "./components/LeftMenu";
 import Navbar from "./components/Navbar";
 function App() {
@@ -37,6 +37,7 @@ function App() {
               <Route path="/orders" element={<Orders />} />
               <Route path="/comments" element={<Comments />} />
               <Route path="/customers" element={<Customers />} />
+              <Route path="/chat" element={<LiveChat />} />
             </Routes>
           </Router>
         </Layout>
