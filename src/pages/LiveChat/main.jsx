@@ -5,7 +5,7 @@ import Pusher from 'pusher-js'
 
 
 export default function LiveChat() {
-  const [history, setHistory] = useState([])
+    const [history, setHistory] = useState([])
     const [message, setMessage] = useState("")
     let bind = false
     useEffect(() => {
@@ -24,23 +24,30 @@ export default function LiveChat() {
 
     const sendMessage = async () => {
         let response = await axios.post(import.meta.env.VITE_BASE_URL + "api/chat/message", { from: "admin", message })
-        if (response.data.status) {
+        if (response.data.status && message.trim().length > 0) {
             setHistory(prevhistory => [...prevhistory, { from: "admin", message }])
+            setMessage("")
         }
 
     }
-  return <>
-   <div className="chat-area">
-                <div className="chat-history">
-                    {history.map((message, i) => {
-                        return <div className={message.from + "-msg message"} key={i}> {message.from}:{message.message}</div>
-                    })}
-                </div>
-                <div className="chat-input">
-                    <input type="text" className="message-input" value={message} onChange={(e) => setMessage(e.target.value)} />
-                    <button onClick={sendMessage}>send</button>
-                </div>
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            sendMessage();
+        }
+    }
+    return <>
+        <div className="chat-area">
+            <div className="chat-history">
+                {history.map((message, i) => {
+                    return <div className={message.from + "-msg message"} key={i}> {message.from}:{message.message}</div>
+                })}
             </div>
+            <div className="chat-input">
+                <input type="text" className="message-input" value={message} onChange={(e) => setMessage(e.target.value)} onKeyDown={handleKeyDown} />
+                <button onClick={sendMessage}>send</button>
+            </div>
+        </div>
 
-  </>;
+    </>;
 }
