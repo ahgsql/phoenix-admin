@@ -33,7 +33,7 @@ p {
 
 }
 
-button {
+#CommentRow button {
     background-color: #ff6b6b;
     color: #fff;
     border: none;
@@ -46,7 +46,7 @@ button {
     margin-top: auto;
 }
 
-button:hover {
+#CommentRow button:hover {
     background-color: #ff4646;
     transform: scale(1.05);
 }
