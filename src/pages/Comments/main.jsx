@@ -43,14 +43,14 @@ const Comment = ({productId, userId}) => {
     return (
         <div id="CommentContainer">
             {/*{comments.map((comment) => (*/}
-            {/*    <div key={comment._id} id="CommentRow">*/}
+            {/*    <div key={comment._id} className="CommentRow">*/}
             {/*        <h3>{comment.username}</h3>*/}
             {/*        <h4>Product: {comment.productName}</h4>*/}
             {/*        <p>{comment.text}</p>*/}
             {/*        <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>*/}
             {/*    </div>*/}
             {/*))}*/}
-            <div id="CommentRow">
+            <div className="CommentRow">
                 <h3>Alptekin</h3>
                 <h4>Product: Alptekin Product</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aspernatur, assumenda deleniti,
@@ -62,7 +62,8 @@ const Comment = ({productId, userId}) => {
                     consequuntur dolor ducimus hic in libero magnam nam optio pariatur placeat possimus provident, quae
                     quisquam ratione? Ipsum, iste laudantium minus quas quasi vero voluptate voluptatum.</p>
                 <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
-            </div><div id="CommentRow">
+            </div>
+            <div className="CommentRow">
                 <h3>Alptekin</h3>
                 <h4>Product: Alptekin Product</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aspernatur, assumenda deleniti,

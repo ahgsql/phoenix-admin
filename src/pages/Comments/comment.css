@@ -7,7 +7,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#CommentRow {
+.CommentRow {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -33,7 +33,7 @@ p {
 
 }
 
-#CommentRow button {
+.CommentRow button {
     background-color: #ff6b6b;
     color: #fff;
     border: none;
@@ -46,7 +46,7 @@ p {
     margin-top: auto;
 }
 
-#CommentRow button:hover {
+.CommentRow button:hover {
     background-color: #ff4646;
     transform: scale(1.05);
 }
