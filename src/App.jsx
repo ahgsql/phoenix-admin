@@ -16,6 +16,7 @@ import Customers from "./pages/Customers/main";
 import LiveChat from "./pages/LiveChat/main";
 import LeftMenu from "./components/LeftMenu";
 import Navbar from "./components/Navbar";
+import LoadProduct from "./pages/loadProducts/load";
 function App() {
   const {
     token: { colorBgContainer },
@@ -31,6 +32,7 @@ function App() {
             <Routes>
               <Route path="/" element={<DashBoard />} />
               <Route path="/products/add" element={<AddProduct />} />
+              <Route path="/products/load" element={<LoadProduct />} />
               <Route path="/products/list" element={<ListProducts />} />
               <Route path="/productdetail/:id" element={<ProductDetail />} />
               <Route path="/products/edit/:id" element={<EditProduct />} />
