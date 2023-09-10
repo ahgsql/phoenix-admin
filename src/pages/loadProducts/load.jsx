@@ -13,6 +13,7 @@ export default function LoadProduct() {
         productSlug:
           product.title.toLowerCase().split(" ").join("-") + "-" + product.id,
         productImg: [{ url: product.photo }],
+        productPhotoFull: product.photoFull,
       };
 
       addProduct(data);
