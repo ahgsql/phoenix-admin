@@ -7,7 +7,11 @@
     flex-direction: column;
     gap: 3px;
 }
-
+.chat-list{
+    display: flex;
+    background-color: aliceblue;
+    padding: 10px;
+}
 .chat-history{
     border: 1px solid black;
     display: flex;

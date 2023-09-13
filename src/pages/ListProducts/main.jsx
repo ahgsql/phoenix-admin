@@ -16,6 +16,13 @@ export default function ListProducts() {
           ...p,
           productActions: [
             <Button
+              type="dashed"
+              onClick={() => navigate("/products/detail/" + p._id)}
+            >
+              See Details
+            </Button>,
+            " ",
+            <Button
               type="primary"
               onClick={() => navigate("/products/edit/" + p._id)}
             >

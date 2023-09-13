@@ -13,12 +13,14 @@ import EditProduct from "./pages/EditProduct/main";
 import Orders from "./pages/Orders/main";
 import Comments from "./pages/Comments/main";
 import Customers from "./pages/Customers/main";
-import LiveChat from "./pages/LiveChat/main";
+import LiveChatSingle from "./pages/LiveChat/LiveChatSingle";
 import LeftMenu from "./components/LeftMenu";
 import Navbar from "./components/Navbar";
 import LoadProduct from "./pages/loadProducts/load";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LiveChat from "./pages/LiveChat/main";
+import Details from "./pages/ListProducts/Details";
 function App() {
   const {
     token: { colorBgContainer },
@@ -39,10 +41,12 @@ function App() {
               <Route path="/products/list" element={<ListProducts />} />
               <Route path="/productdetail/:id" element={<ProductDetail />} />
               <Route path="/products/edit/:id" element={<EditProduct />} />
+              <Route path="/products/detail/:id" element={<Details />} />
               <Route path="/orders" element={<Orders />} />
               <Route path="/comments" element={<Comments />} />
               <Route path="/customers" element={<Customers />} />
               <Route path="/chat" element={<LiveChat />} />
+              <Route path="/chat/:userName" element={<LiveChatSingle />} />
             </Routes>
           </Router>
         </Layout>
