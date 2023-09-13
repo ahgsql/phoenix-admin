@@ -38,11 +38,19 @@ export default function LiveChat() {
     }
     return <>
         <div className="chat-area">
-            <div className="chat-history">
-                {history.map((message, i) => {
-                    return <div className={message.from + "-msg message"} key={i}> {message.from}:{message.message}</div>
-                })}
-            </div>
+        <div className="chat-history">
+          {history.map((message, i) => {
+            return (
+              <div className={message.from + "-msg message"} key={i}>
+                {" "}
+                <div className="messageLabel">
+                  {message.from == "admin" ?'You': "Client"}:
+                </div>
+                <div className="messageBody">{message.message}</div>
+              </div>
+            );
+          })}
+        </div>
             <div className="chat-input">
                 <input type="text" className="message-input" value={message} onChange={(e) => setMessage(e.target.value)} onKeyDown={handleKeyDown} />
                 <button onClick={sendMessage}>send</button>

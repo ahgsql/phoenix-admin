@@ -35,12 +35,16 @@
 }
 .admin-msg{
     text-align: right;
-    background-color: blue;
+    background-color: rgb(190, 227, 255);
 
 }
 .customer-msg{
 
-text-align: left;
-background-color: brown;
+text-align: right;
+background-color: rgb(185, 243, 179);
 
+}
+.messageLabel{
+    font-weight: bold;
+    text-align: left;
 }
