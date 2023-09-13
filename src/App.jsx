@@ -17,6 +17,8 @@ import LiveChat from "./pages/LiveChat/main";
 import LeftMenu from "./components/LeftMenu";
 import Navbar from "./components/Navbar";
 import LoadProduct from "./pages/loadProducts/load";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const {
     token: { colorBgContainer },
@@ -25,6 +27,7 @@ function App() {
   return (
     <Layout>
       <Navbar />
+      <ToastContainer />
       <Content style={{ padding: "0 50px" }}>
         <Layout style={{ padding: "24px 0", background: colorBgContainer }}>
           <Router>
