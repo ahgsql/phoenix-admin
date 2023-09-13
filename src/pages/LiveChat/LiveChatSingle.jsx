@@ -3,12 +3,14 @@ import "./chatArea.css";
 import axios from "axios";
 import Pusher from "pusher-js";
 import { useParams } from "react-router";
+import getChatHistory from "../../hooks/getChatHistory";
 export default function LiveChatSingle() {
   const [history, setHistory] = useState([]);
   const [message, setMessage] = useState("");
   const { userName } = useParams();
 
   let bind = false;
+  let historyGot = false;
   useEffect(() => {
     const pusher = new Pusher("cc9492824097dabab1e1", {
       cluster: "eu",
@@ -23,6 +25,18 @@ export default function LiveChatSingle() {
       });
       bind = true;
     }
+
+    (async () => {
+      if (historyGot) return;
+      let history = await getChatHistory(userName);
+      history.map((message) => {
+        setHistory((prevhistory) => [
+          ...prevhistory,
+          { from: message.from, message: message.message },
+        ]);
+      });
+      historyGot = true;
+    })();
   }, []);
 
   const sendMessage = async () => {
