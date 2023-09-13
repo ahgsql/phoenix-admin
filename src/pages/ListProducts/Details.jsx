@@ -6,18 +6,22 @@ import { useNavigate, useParams } from "react-router-dom";
 import deleteProduct from "../../hooks/deleteProduct";
 import getProductById from "../../hooks/getProductById";
 import getCommentsById from "../../hooks/getCommentsById";
+import getWishlistCount from "../../hooks/getWishlistCount";
 
 export default function Details() {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
-  const [commentCount, setCommentCount] = useState(0);
+  const [comments, setComments] = useState([]);
+  const [wishlistCount, setWishlistCount] = useState(0);
   useEffect(() => {
     (async () => {
       let data = await getProductById(id);
       let comments = await getCommentsById(id);
-      setCommentCount(comments);
+      let wishlist = await getWishlistCount(id);
+      setComments(comments);
       console.log(`comments:`, comments);
       setProduct(data);
+      setWishlistCount(wishlist);
     })();
   }, []);
   if (product == null) {
@@ -32,7 +36,15 @@ export default function Details() {
         Product Rating: {Math.round(product.productRating)}
       </Content>
       <Content style={{ padding: "0 24px", minHeight: 280 }}>
-        Product Comment: {commentCount}
+        <ul>
+          Product Comment:{" "}
+          {comments.map((comment) => {
+            return <li>{comment.content} </li>;
+          })}
+        </ul>
+      </Content>
+      <Content style={{ padding: "0 24px", minHeight: 280 }}>
+        Wishlist count: {wishlistCount}
       </Content>
     </>
   );
