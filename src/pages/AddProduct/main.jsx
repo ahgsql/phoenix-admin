@@ -5,6 +5,7 @@ import Title from "antd/es/typography/Title";
 import { PlusOutlined } from "@ant-design/icons";
 import uploadImage from "../../hooks/uploadImage";
 import { toast } from "react-toastify";
+import TextArea from "antd/es/input/TextArea";
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -111,7 +112,7 @@ export default function AddProduct() {
             },
           ]}
         >
-          <Input />
+          <TextArea rows={3} />
         </Form.Item>
         <Form.Item
           name="price"
