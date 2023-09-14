@@ -27,7 +27,7 @@ export default function LiveChat() {
       <div className="chat-list">
         {list.map((chat) => {
           return (
-            <Link to={"/chat/" + chat.userName}>
+     <Link to={"/chat/" + chat.userName}>
               <div className="singleChat">
                 <span style={{ fontWeight: "bold" }}>{chat.userName}</span>
                 <p>Total message count: {chat.messageCount}</p>
