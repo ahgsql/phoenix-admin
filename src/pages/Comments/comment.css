@@ -33,6 +33,13 @@ p {
 
 }
 
+.CommentRow .navigationButtons{
+    display: flex;
+    align-self: flex-end;
+    flex-direction: row;
+    gap: 15px;
+}
+
 .CommentRow button {
     background-color: #ff6b6b;
     color: #fff;
@@ -49,4 +56,9 @@ p {
 .CommentRow button:hover {
     background-color: #ff4646;
     transform: scale(1.05);
+}
+
+.CommentRow .time{
+    font-size: 15px;
+    font-weight: lighter;
 }
