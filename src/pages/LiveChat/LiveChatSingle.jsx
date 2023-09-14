@@ -30,8 +30,6 @@ export default function LiveChatSingle() {
     getChatHistory(userName).then(setHistory);
   }, [userName]);
 
-  }, [userName]);
-  
   const sendMessage = async () => {
     if (message.trim().length > 0) {
       let response = await axios.post(
@@ -50,7 +48,7 @@ export default function LiveChatSingle() {
   };
   return (
     <>
- <div
+      <div
         className="chatAndList"
         style={{ display: "flex", flexDirection: "row", gap: 50 }}
       >
@@ -69,7 +67,7 @@ export default function LiveChatSingle() {
                 </div>
               );
             })}
- </ScrollableFeed>
+          </ScrollableFeed>
           <div
             className="chat-input"
             style={{
@@ -86,7 +84,7 @@ export default function LiveChatSingle() {
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={handleKeyDown}
             />
- <button className="send-button" onClick={sendMessage}>
+            <button className="send-button" onClick={sendMessage}>
               <FontAwesomeIcon
                 icon={faPaperPlane}
                 size="xl"
@@ -98,7 +96,6 @@ export default function LiveChatSingle() {
 
         <ChatList />
       </div>
-
     </>
   );
 }
