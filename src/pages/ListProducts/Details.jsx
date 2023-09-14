@@ -7,7 +7,13 @@ import deleteProduct from "../../hooks/deleteProduct";
 import getProductById from "../../hooks/getProductById";
 import getCommentsById from "../../hooks/getCommentsById";
 import getWishlistCount from "../../hooks/getWishlistCount";
-
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
+TimeAgo.addDefaultLocale(en);
+const timeAgo = new TimeAgo("en-US");
+import { Card } from "antd";
+import { Rating } from "react-simple-star-rating";
+import commentStyles from "./comments.module.css";
 export default function Details() {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
@@ -29,23 +35,50 @@ export default function Details() {
   }
   return (
     <>
-      <Content style={{ padding: "0 24px", minHeight: 280 }}>
-        Product Title: {product.productTitle}
-      </Content>
-      <Content style={{ padding: "0 24px", minHeight: 280 }}>
-        Product Rating: {Math.round(product.productRating)}
-      </Content>
-      <Content style={{ padding: "0 24px", minHeight: 280 }}>
-        <ul>
-          Product Comment:{" "}
+      <Card
+        title={<h1>{product.productTitle}</h1>}
+        size="xl"
+        bordered={false}
+        style={{ width: 1300, border: "1px solid black", margin: "40px" }}
+      >
+        <h2>Description:</h2>
+        <h2 style={{ fontWeight: "normal" }}>{product.productDescription}</h2>
+
+        <h2>
+          <b>Price:</b>{" "}
+          <span style={{ fontWeight: "normal" }}>${product.productPrice}</span>
+        </h2>
+        <h2>
+          <b>Product Rating:</b>{" "}
+          <Rating
+            initialValue={Math.round(product.productRating)}
+            readonly={true}
+          />
+        </h2>
+        <h2>
+          {wishlistCount}{" "}
+          <span style={{ fontWeight: "normal" }}>
+            users have this product in their wishlist
+          </span>
+        </h2>
+        <div className={commentStyles.comments}>
+          <h1>Product Comments</h1>
           {comments.map((comment) => {
-            return <li>{comment.content} </li>;
+            return (
+              <div className={commentStyles.singleComment}>
+                <span className={commentStyles.userName}>
+                  {comment.userName}
+                </span>
+                <span className={commentStyles.content}>{comment.content}</span>
+                <span className={commentStyles.time}>
+                  {" "}
+                  {timeAgo.format(new Date(comment.createdAt))}
+                </span>
+              </div>
+            );
           })}
-        </ul>
-      </Content>
-      <Content style={{ padding: "0 24px", minHeight: 280 }}>
-        Wishlist count: {wishlistCount}
-      </Content>
+        </div>
+      </Card>
     </>
   );
 }

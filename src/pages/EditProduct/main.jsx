@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Button, Form, Input, InputNumber, Select } from "antd";
 import updateProductById from "../../hooks/updateProductById";
 import TextArea from "antd/es/input/TextArea";
+import FormItemLabel from "antd/es/form/FormItemLabel";
 export default function EditProduct() {
   const [form] = Form.useForm();
   const [product, setProduct] = useState(null);
@@ -55,9 +56,12 @@ export default function EditProduct() {
       name="control-hooks"
       onFinish={onFinish}
       style={{
-        maxWidth: 600,
+        width: 1000,
         padding: 40,
       }}
+      labelCol={{ span: 5 }}
+      wrapperCol={{ span: 30 }}
+      layout="horizontal"
     >
       <Form.Item
         name="title"
@@ -79,7 +83,7 @@ export default function EditProduct() {
           },
         ]}
       >
-        <TextArea autoSize={true} />
+        <TextArea rows={3} />
       </Form.Item>
       <Form.Item
         name="price"
@@ -103,10 +107,10 @@ export default function EditProduct() {
       >
         <Input />
       </Form.Item>
-      <Form.Item>
+      <Form.Item label=" ">
         <Button type="primary" htmlType="submit">
           Submit
-        </Button>
+        </Button>{" "}
         <Button htmlType="button" onClick={onReset}>
           Reset
         </Button>
