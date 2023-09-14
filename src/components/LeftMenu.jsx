@@ -47,7 +47,7 @@ export default function LeftMenu() {
       };
     }
   );
-  console.log(leftMenu);
+  //  console.log(leftMenu);
   return (
     <Sider style={{ background: colorBgContainer }} width={200}>
       <Menu

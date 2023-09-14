@@ -16,7 +16,7 @@ export default function Orders() {
       setOrders([]);
       let orders = await getOrders();
       if (!orders) return setLoading(false);
-      console.log(orders);
+      //console.log(orders);
       setLoading(false);
       setOrders(orders);
     })(); //
