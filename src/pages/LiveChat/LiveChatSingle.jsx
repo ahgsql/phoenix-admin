@@ -4,9 +4,10 @@ import axios from "axios";
 import Pusher from "pusher-js";
 import { useParams } from "react-router";
 import getChatHistory from "../../hooks/getChatHistory";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import ChatList from "./ChatList";
+import ScrollableFeed from "react-scrollable-feed";
 export default function LiveChatSingle() {
   const [history, setHistory] = useState([]);
   const [message, setMessage] = useState("");
@@ -23,12 +24,11 @@ export default function LiveChatSingle() {
         { from: "customer", message: data.message },
       ]);
     });
-
   }, [userName]);
 
   useEffect(() => {
-
-    getChatHistory(userName).then(setHistory)
+    getChatHistory(userName).then(setHistory);
+  }, [userName]);
 
   }, [userName]);
   
@@ -50,13 +50,18 @@ export default function LiveChatSingle() {
   };
   return (
     <>
-      <div className="chatAndList" style={{ display: "flex", flexDirection: "row", gap: 50 }}>
+ <div
+        className="chatAndList"
+        style={{ display: "flex", flexDirection: "row", gap: 50 }}
+      >
         <div className="chat-area">
-          <div className="chat-history">
+          <ScrollableFeed
+            forceScroll={true}
+            style={{ height: "75%", flexShrink: 2, overflow: "hidden" }}
+          >
             {history.map((message, i) => {
               return (
                 <div className={message.from + "-msg message"} key={i}>
-                  {" "}
                   <div className="messageLabel">
                     {message.from == "admin" ? "You" : userName}:
                   </div>
@@ -64,13 +69,16 @@ export default function LiveChatSingle() {
                 </div>
               );
             })}
-          </div>
-          <div className="chat-input" style={{
-            display: "flex",
-            flexDirection: "row",
-            padding: "10px",
-            alignContent: "baseline",
-          }}>
+ </ScrollableFeed>
+          <div
+            className="chat-input"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              padding: "10px",
+              alignContent: "baseline",
+            }}
+          >
             <input
               type="text"
               className="message-input"
@@ -78,13 +86,17 @@ export default function LiveChatSingle() {
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={handleKeyDown}
             />
-            <button className="send-button" onClick={sendMessage}><FontAwesomeIcon icon={faPaperPlane} size="xl" style={{ color: "#658fd7", }} /></button>
+ <button className="send-button" onClick={sendMessage}>
+              <FontAwesomeIcon
+                icon={faPaperPlane}
+                size="xl"
+                style={{ color: "#658fd7" }}
+              />
+            </button>
           </div>
-
         </div>
 
         <ChatList />
-
       </div>
 
     </>

@@ -1,6 +1,4 @@
 
-
-
 import React, { useEffect, useState } from "react";
 import "./chatArea.css";
 import axios from "axios";
@@ -24,7 +22,9 @@ export default function ChatList() {
       setChatList(chat);
     })();
   }, []);
-    if (loading) return <h1>Loading</h1>;
+
+  if (loading) return <h1>Loading</h1>;
+
 
   return (
     <>
@@ -32,12 +32,14 @@ export default function ChatList() {
         {list.map((chat) => {
           return (
             <>
-            <Link to={"/chat/" + chat.userName}  >
-              <div className="singleChat">
-                <span style={{fontWeight:"bold"}}>{chat.userName}</span>
-                <p>Total message count: {chat.messageCount}</p>
-              </div>
-            </Link>
+
+              <Link to={"/chat/" + chat.userName}>
+                <div className="singleChat">
+                  <span style={{ fontWeight: "bold" }}>{chat.userName}</span>
+                  <p>Total message count: {chat.messageCount}</p>
+                </div>
+              </Link>
+
             </>
           );
         })}
