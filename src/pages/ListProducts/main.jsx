@@ -11,7 +11,7 @@ export default function ListProducts() {
   useEffect(() => {
     (async () => {
       let data = await getProducts();
-      let dataSource = data.map((p) => {
+      let dataSource = data.reverse().map((p) => {
         return {
           ...p,
           productActions: [

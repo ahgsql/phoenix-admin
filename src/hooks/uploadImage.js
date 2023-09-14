@@ -8,7 +8,6 @@ export default async (base64) => {
   try {
     const response = await axios.post("https://api.imgbb.com/1/upload", form, {
       params: {
-        expiration: "10000",
         key: "78f1b5e685dc99bee6d496abc6079ae1",
       },
     });

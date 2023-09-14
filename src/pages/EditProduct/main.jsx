@@ -3,6 +3,8 @@ import getProductById from "../../hooks/getProductById";
 import { useParams } from "react-router-dom";
 import { Button, Form, Input, InputNumber, Select } from "antd";
 import updateProductById from "../../hooks/updateProductById";
+import TextArea from "antd/es/input/TextArea";
+import FormItemLabel from "antd/es/form/FormItemLabel";
 export default function EditProduct() {
   const [form] = Form.useForm();
   const [product, setProduct] = useState(null);
@@ -20,13 +22,19 @@ export default function EditProduct() {
   useEffect(() => {
     (async () => {
       let data = await getProductById(id);
-      console.log(data);
       setProduct(data);
       form.setFieldsValue({
         title: data.productTitle,
+        description: data.productDescription,
         price: data.productPrice,
         slug: data.productSlug,
       });
+      form.initialValues = {
+        title: data.productTitle,
+        description: data.productDescription,
+        price: data.productPrice,
+        slug: data.productSlug,
+      };
     })();
   }, []);
 
@@ -48,12 +56,16 @@ export default function EditProduct() {
       name="control-hooks"
       onFinish={onFinish}
       style={{
-        maxWidth: 600,
+        width: 1000,
+        padding: 40,
       }}
+      labelCol={{ span: 5 }}
+      wrapperCol={{ span: 30 }}
+      layout="horizontal"
     >
       <Form.Item
         name="title"
-        label="Product Title"
+        label="Title"
         rules={[
           {
             required: true,
@@ -63,8 +75,19 @@ export default function EditProduct() {
         <Input />
       </Form.Item>
       <Form.Item
+        name="description"
+        label="Description"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <TextArea rows={3} />
+      </Form.Item>
+      <Form.Item
         name="price"
-        label="Product Price"
+        label="Price"
         rules={[
           {
             required: true,
@@ -84,15 +107,12 @@ export default function EditProduct() {
       >
         <Input />
       </Form.Item>
-      <Form.Item>
+      <Form.Item label=" ">
         <Button type="primary" htmlType="submit">
           Submit
-        </Button>
+        </Button>{" "}
         <Button htmlType="button" onClick={onReset}>
           Reset
-        </Button>
-        <Button type="link" htmlType="button" onClick={onFill}>
-          Fill form
         </Button>
       </Form.Item>
     </Form>

@@ -5,6 +5,7 @@ import Title from "antd/es/typography/Title";
 import { PlusOutlined } from "@ant-design/icons";
 import uploadImage from "../../hooks/uploadImage";
 import { toast } from "react-toastify";
+import TextArea from "antd/es/input/TextArea";
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -84,9 +85,12 @@ export default function AddProduct() {
         name="control-hooks"
         onFinish={onFinish}
         style={{
-          maxWidth: 600,
+          width: 1000,
           padding: 40,
         }}
+        labelCol={{ span: 5 }}
+        wrapperCol={{ span: 30 }}
+        layout="horizontal"
       >
         <Title level={2} type="danger">
           Add Product
@@ -100,7 +104,16 @@ export default function AddProduct() {
             },
           ]}
         >
-          <Input />
+          <Input
+            onChange={(e) =>
+              form.setFieldValue(
+                "slug",
+                e.target.value.toLowerCase().split(" ").join("-") +
+                  "-" +
+                  Math.floor(Math.random() * 100)
+              )
+            }
+          />
         </Form.Item>
         <Form.Item
           name="description"
@@ -111,7 +124,7 @@ export default function AddProduct() {
             },
           ]}
         >
-          <Input />
+          <TextArea rows={3} />
         </Form.Item>
         <Form.Item
           name="price"
@@ -162,7 +175,7 @@ export default function AddProduct() {
             src={previewImage}
           />
         </Modal>
-        <Form.Item>
+        <Form.Item label="">
           <Button type="primary" htmlType="submit">
             Submit
           </Button>
