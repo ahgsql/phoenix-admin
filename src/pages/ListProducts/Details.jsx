@@ -9,7 +9,6 @@ import getCommentsById from "../../hooks/getCommentsById";
 import getWishlistCount from "../../hooks/getWishlistCount";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
-TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo("en-US");
 import { Card } from "antd";
 import { Rating } from "react-simple-star-rating";
@@ -25,7 +24,7 @@ export default function Details() {
       let comments = await getCommentsById(id);
       let wishlist = await getWishlistCount(id);
       setComments(comments);
-      console.log(`comments:`, comments);
+      // console.log(`comments:`, comments);
       setProduct(data);
       setWishlistCount(wishlist);
     })();
@@ -63,9 +62,9 @@ export default function Details() {
         </h2>
         <div className={commentStyles.comments}>
           <h1>Product Comments</h1>
-          {comments.map((comment) => {
+          {comments.map((comment, i) => {
             return (
-              <div className={commentStyles.singleComment}>
+              <div key={i} className={commentStyles.singleComment}>
                 <span className={commentStyles.userName}>
                   {comment.userName}
                 </span>

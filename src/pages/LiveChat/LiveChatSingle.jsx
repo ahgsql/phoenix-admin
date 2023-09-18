@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./chatArea.css";
 import axios from "axios";
 import Pusher from "pusher-js";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import getChatHistory from "../../hooks/getChatHistory";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";

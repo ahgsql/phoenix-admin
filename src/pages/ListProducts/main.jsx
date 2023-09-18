@@ -18,18 +18,22 @@ export default function ListProducts() {
             <Button
               type="dashed"
               onClick={() => navigate("/products/detail/" + p._id)}
+              key={1}
             >
               See Details
             </Button>,
             " ",
             <Button
               type="primary"
+              key={2}
               onClick={() => navigate("/products/edit/" + p._id)}
             >
               Edit
             </Button>,
             " ",
-            <Button onClick={() => deleteProduct(p._id)}>Delete</Button>,
+            <Button key={3} onClick={() => deleteProduct(p._id)}>
+              Delete
+            </Button>,
           ],
         };
       });
@@ -63,7 +67,6 @@ export default function ListProducts() {
   if (products.length == 0) {
     return <p>Loading..</p>;
   }
-
   return (
     <Content style={{ padding: "0 24px", minHeight: 280 }}>
       <Table dataSource={products} rowKey={"_id"} columns={columns} />

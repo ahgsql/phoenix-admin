@@ -62,7 +62,7 @@ export default function AddProduct() {
   };
   const handleChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
-    console.log(fileList);
+    //console.log(fileList);
   };
 
   const uploadButton = (
